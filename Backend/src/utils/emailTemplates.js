@@ -4,7 +4,7 @@ export function getOtpHtml(
 ) {
   return `
   <div style="font-family: Arial, sans-serif; padding:20px;">
-      <h2>PeekHire</h2>
+      <h2>PeakHire</h2>
 
       <p>Your OTP for ${purpose} is:</p>
 

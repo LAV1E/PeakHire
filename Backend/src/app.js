@@ -18,6 +18,7 @@ import interviewRoutes from "./routes/interview.routes.js";
 import notificationRoutes from "./routes/notification.routes.js";
 import offerRoutes from "./routes/offer.routes.js";
 import aiRoutes from "./routes/ai.routes.js";
+import adminRoutes from "./routes/admin.routes.js";
 
 const app = express();
 
@@ -69,6 +70,7 @@ app.use("/api/interviews", interviewRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/offers", offerRoutes);
 app.use("/api/ai", aiRoutes);
+app.use("/api/admin", adminRoutes);
 
 app.use("/api-docs",swaggerUi.serve,swaggerUi.setup(swaggerSpec));
 

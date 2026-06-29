@@ -5,14 +5,14 @@ const options = {
     openapi: "3.0.0",
 
     info: {
-      title: "PeekHire API",
+      title: "PeakHire API",
       version: "1.0.0",
       description: "Production Ready Recruitment Platform API",
     },
 
     servers: [
       {
-        url: "https://peekhire.onrender.com",
+        url: "https://peakhire.onrender.com",
         description: "Production Server",
       },
     ],

@@ -1,30 +1,3 @@
-// import cloudinary from "../config/cloudinary.config.js";
-
-// export async function uploadToCloudinary(
-//   filePath,
-//   folder
-// ) {
-//   return cloudinary.uploader.upload(
-//     filePath,
-//     {
-//       folder,
-//       resource_type: "auto",
-//     }
-//   );
-// }
-
-// export async function deleteFromCloudinary(
-//   publicId
-// ) {
-//   return cloudinary.uploader.destroy(
-//     publicId,
-//     {
-//       resource_type: "raw",
-//     }
-//   );
-// }
-
-
 
 import cloudinary from "../config/cloudinary.config.js";
 
