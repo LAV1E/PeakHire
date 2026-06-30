@@ -1,8 +1,8 @@
-# 🚀 PeekHire
+# 🚀 PeakHire
 
 An AI-powered Recruitment Management Platform built with **Node.js**, **Express.js**, **MongoDB**, **Cloudinary**, and **Google Gemini AI**.
 
-PeekHire is a production-style backend REST API that helps recruiters and candidates manage the complete hiring process—from authentication to job posting, applications, interviews, offer letters, notifications, and AI-powered resume analysis.
+PeakHire is a production-style backend REST API that helps recruiters and candidates manage the complete hiring process—from authentication to job posting, applications, interviews, offer letters, notifications, and AI-powered resume analysis.
 
 > **Status:** ✅ Backend Completed | 🚧 Frontend Coming Soon
 
@@ -181,7 +181,7 @@ Features include:
 # 📂 Project Structure
 
 ```text
-PeekHire
+PeakHire
 │
 ├── Backend
 │   ├── src
@@ -208,13 +208,13 @@ PeekHire
 Clone the repository
 
 ```bash
-git clone https://github.com/LAV1E/PeekHire.git
+git clone https://github.com/LAV1E/PeakHire.git
 ```
 
 Move into the project
 
 ```bash
-cd PeekHire
+cd PeakHire
 ```
 
 Move into Backend
@@ -265,7 +265,7 @@ GEMINI_API_KEY=
 
 # 📚 API Documentation
 
-Swagger documentation is available at:
+Swagger documentation is available at:  https://peakhire.onrender.com/api-docs/
 
 ```
 /api-docs
