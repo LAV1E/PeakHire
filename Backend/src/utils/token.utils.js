@@ -2,8 +2,7 @@ import jwt from "jsonwebtoken";
 import config from "../config/config.js";
 
 export function generateAccessToken(
-  user
-) {
+  user) {
   return jwt.sign(
     {
       id: user._id,
@@ -11,7 +10,7 @@ export function generateAccessToken(
     },
     config.JWT_SECRET,
     {
-      expiresIn: "15m",
+      expiresIn: "24h",
     }
   );
 }

@@ -14,20 +14,10 @@ import {generateAccessToken, generateRefreshToken,} from "../utils/token.utils.j
 
 export async function registerUser(req, res) {
   try {
-    const {
-      name,
-      email,
-      password,
-      role,
-    } = req.body;
+    const {name,email,password,role,} = req.body;
 
     // Validation
-    if (
-      !name ||
-      !email ||
-      !password ||
-      !role
-    ) {
+    if (!name ||!email ||!password || !role) {
       return res.status(400).json({
         success: false,
         message:
@@ -36,14 +26,9 @@ export async function registerUser(req, res) {
     }
 
     // Allowed Roles
-    const allowedRoles = [
-      "candidate",
-      "recruiter",
-    ];
+    const allowedRoles = ["candidate","recruiter",];
 
-    if (
-      !allowedRoles.includes(role)
-    ) {
+    if (!allowedRoles.includes(role)) {
       return res.status(400).json({
         success: false,
         message:
@@ -52,10 +37,7 @@ export async function registerUser(req, res) {
     }
 
     // Existing User Check
-    const existingUser =
-      await userModel.findOne({
-        email,
-      });
+    const existingUser = await userModel.findOne({ email,});
 
     if (existingUser) {
       return res.status(409).json({
@@ -66,8 +48,7 @@ export async function registerUser(req, res) {
     }
 
     // Create User
-    const user =
-      await userModel.create({
+    const user = await userModel.create({
         name,
         email,
         password,
@@ -76,10 +57,7 @@ export async function registerUser(req, res) {
       });
 
     // Generate Verification OTP
-    const otp = await createOtp(
-      user,
-      "EMAIL_VERIFICATION"
-    );
+    const otp = await createOtp( user,"EMAIL_VERIFICATION");
 
     // Send Email
     await sendEmail(
@@ -103,7 +81,7 @@ export async function registerUser(req, res) {
         email: user.email,
         role: user.role,
         isEmailVerified:
-          user.isEmailVerified,
+        user.isEmailVerified,
       },
     });
   } catch (error) {
@@ -119,6 +97,7 @@ export async function registerUser(req, res) {
     });
   }
 }
+
 export async function loginUser(req, res) {
   try {
     const { email, password } = req.body;
@@ -188,11 +167,18 @@ export async function loginUser(req, res) {
         });
 
         if (sessionCount >= 5) {
-        return res.status(403).json({
-            success: false,
-            message:
-            "Maximum device limit reached",
-        });
+
+          await SessionModel.findOneAndDelete(
+          { user: user._id },
+          {
+            sort: { createdAt: 1 },
+          }
+        );
+        // return res.status(403).json({
+        //     success: false,
+        //     message:
+        //     "Maximum device limit reached",
+        // });
     }
 
     // Create Session
@@ -213,7 +199,7 @@ export async function loginUser(req, res) {
           "production",
         sameSite: "strict",
         maxAge:
-          15 * 60 * 1000,
+          24 * 60 * 60 * 1000,
       }
     );
 
@@ -593,7 +579,7 @@ export async function verifyLoginOtp(
           "production",
         sameSite: "strict",
         maxAge:
-          15 * 60 * 1000,
+          24 * 60 * 60 * 1000,
       }
     );
 
@@ -833,7 +819,7 @@ export async function refreshToken(
         httpOnly: true,
         sameSite: "strict",
         maxAge:
-          15 * 60 * 1000,
+          24 * 60 * 60 * 1000,
       }
     );
 
