@@ -25,17 +25,18 @@ transporter.verify((error, success) => {
 export const sendEmail = async (to, subject, text, html) => {
   try {
     const info = await transporter.sendMail({
-      from: `"Peak Hire" <${process.env.GOOGLE_USER}>`, // sender address
-      to, // list of receivers
-      subject, // Subject line
-      text, // plain text body
-      html, // html body
+      from: `"Peak Hire" <${process.env.GOOGLE_USER}>`,
+      to,
+      subject,
+      text,
+      html,
     });
 
-    console.log('Message sent: %s', info.messageId);
-    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+    console.log("Message sent:", info.messageId);
+    return info;
   } catch (error) {
-    console.error('Error sending email:', error);
+    console.error("Error sending email:", error);
+    throw error;
   }
 };
 
