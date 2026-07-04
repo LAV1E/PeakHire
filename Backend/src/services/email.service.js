@@ -63,12 +63,23 @@ import nodemailer from "nodemailer";
 import config from "../config/config.js";
 
 // Create SMTP Transport
+// export const transporter = nodemailer.createTransport({
+//   service: "gmail",
+//   auth: {
+//     user: config.GOOGLE_USER,
+//     pass: config.GOOGLE_APP_PASSWORD,
+//   },
+// });
 export const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "74.125.24.109", // smtp.gmail.com IPv4
+  port: 587,
+  secure: false,
+  requireTLS: true,
   auth: {
     user: config.GOOGLE_USER,
     pass: config.GOOGLE_APP_PASSWORD,
   },
+  family: 4, // Force IPv4
 });
 console.log("consoleee fro testing....")
 // Verify SMTP Connection
