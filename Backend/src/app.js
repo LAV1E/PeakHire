@@ -56,6 +56,7 @@ app.use(limiter);
 
 app.use(express.json());
 app.use(cookieParser());
+app.set("trust proxy", 1);
 
 
 app.use("/api/auth", AuthRoutes);
