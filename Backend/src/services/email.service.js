@@ -12,47 +12,75 @@ import config from '../config/config.js';
 //   },
 // });
 
-export const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
-  auth: {
-    type: "OAuth2",
-    user: config.GOOGLE_USER,
-    clientId: config.GOOGLE_CLIENT_ID,
-    clientSecret: config.GOOGLE_CLIENT_SECRET,
-    refreshToken: config.GOOGLE_REFRESH_TOKEN,
-  },
-  connectionTimeout: 10000,
-  greetingTimeout: 10000,
-  socketTimeout: 10000,
-});
+// export const transporter = nodemailer.createTransport({
+//   host: "smtp.gmail.com",
+//   port: 587,
+//   secure: false,
+//   auth: {
+//     type: "OAuth2",
+//     user: config.GOOGLE_USER,
+//     clientId: config.GOOGLE_CLIENT_ID,
+//     clientSecret: config.GOOGLE_CLIENT_SECRET,
+//     refreshToken: config.GOOGLE_REFRESH_TOKEN,
+//   },
+//   connectionTimeout: 10000,
+//   greetingTimeout: 10000,
+//   socketTimeout: 10000,
+// });
 
 // Verify the connection configuration
-transporter.verify((error, success) => {
-  if (error) {
-    console.error('Error connecting to email server:', error);
+// transporter.verify((error, success) => {
+//   if (error) {
+//     console.error('Error connecting to email server:', error);
+//   } else {
+//     console.log('Email server is ready to send messages');
+//   }
+// });
+
+// Function to send email
+// export const sendEmail = async (to, subject, text, html) => {
+//   try {
+//     const info = await transporter.sendMail({
+//       from: `"Peak Hire" <${process.env.GOOGLE_USER}>`,
+//       to,
+//       subject,
+//       text,
+//       html,
+//     });
+
+//     console.log("Message sent:", info.messageId);
+//     return info;
+//   } catch (error) {
+//     console.error("Error sending email:", error);
+//     throw error;
+//   }
+// };
+
+
+////// new code temperorly 
+
+export const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: config.GOOGLE_USER,
+    pass: config.GOOGLE_APP_PASSWORD,
+  },
+});
+
+transporter.verify((err) => {
+  if (err) {
+    console.log(err);
   } else {
-    console.log('Email server is ready to send messages');
+    console.log("SMTP Connected");
   }
 });
 
-// Function to send email
-export const sendEmail = async (to, subject, text, html) => {
-  try {
-    const info = await transporter.sendMail({
-      from: `"Peak Hire" <${process.env.GOOGLE_USER}>`,
-      to,
-      subject,
-      text,
-      html,
-    });
-
-    console.log("Message sent:", info.messageId);
-    return info;
-  } catch (error) {
-    console.error("Error sending email:", error);
-    throw error;
-  }
-};
-
+export async function sendEmail(to, subject, text, html) {
+  return transporter.sendMail({
+    from: `"PeakHire" <${config.GOOGLE_USER}>`,
+    to,
+    subject,
+    text,
+    html,
+  });
+}

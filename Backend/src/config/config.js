@@ -60,5 +60,11 @@ const config = {
   CLOUDINARY_API_SECRET:process.env.CLOUDINARY_API_SECRET,
   GEMINI_API_KEY:process.env.GEMINI_API_KEY,
 };
+console.log({
+  GOOGLE_USER: config.GOOGLE_USER,
+  CLIENT_ID: !!config.GOOGLE_CLIENT_ID,
+  CLIENT_SECRET: !!config.GOOGLE_CLIENT_SECRET,
+  REFRESH_TOKEN: !!config.GOOGLE_REFRESH_TOKEN,
+});
 
 export default config;
