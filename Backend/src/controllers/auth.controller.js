@@ -60,6 +60,7 @@ export async function registerUser(req, res) {
     const otp = await createOtp( user,"EMAIL_VERIFICATION");
 
     // Send Email
+    console.log("Generated OTP:", otp);
     console.log("Before sendEmail");
     await sendEmail(
       user.email,
@@ -72,6 +73,7 @@ export async function registerUser(req, res) {
     );
     
     console.log("After sendEmail");
+    
     return res.status(201).json({
       success: true,
       message:

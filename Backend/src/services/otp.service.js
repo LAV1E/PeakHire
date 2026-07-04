@@ -1,15 +1,7 @@
 import OtpModel from "../models/otp.model.js";
+import {generateOtp,hashOtp,getOtpExpiry,} from "../utils/otp.utils.js";
 
-import {
-  generateOtp,
-  hashOtp,
-  getOtpExpiry,
-} from "../utils/otp.utils.js";
-
-export async function createOtp(
-  user,
-  type
-) {
+export async function createOtp( user, type) {
   const otp = generateOtp();
 
   const otpHash = hashOtp(otp);
