@@ -30,6 +30,7 @@
     "nodemailer": "^9.0.1",
     "pdfjs-dist": "^6.1.200",
     "react-router-dom": "^7.18.0",
+    "resend": "^6.17.1",
     "swagger-jsdoc": "^6.3.0",
     "swagger-ui-express": "^5.0.1"
   }

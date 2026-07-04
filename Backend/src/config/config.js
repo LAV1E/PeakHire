@@ -45,7 +45,9 @@ if(!process.env.GEMINI_API_KEY){
     "GEMINI_API_KEY is missing"
   );
 }
-
+if (!process.env.RESEND_API_KEY) {
+  throw new Error("RESEND_API_KEY is missing");
+}
 
 const config = {
   PORT: process.env.PORT,
@@ -63,6 +65,7 @@ const config = {
   CLOUDINARY_API_KEY:process.env.CLOUDINARY_API_KEY,
   CLOUDINARY_API_SECRET:process.env.CLOUDINARY_API_SECRET,
   GEMINI_API_KEY:process.env.GEMINI_API_KEY,
+  RESEND_API_KEY: process.env.RESEND_API_KEY,
 };
 console.log({
   GOOGLE_USER: config.GOOGLE_USER,
