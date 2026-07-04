@@ -28,13 +28,11 @@ if (!process.env.CLOUDINARY_CLOUD_NAME) {
     "CLOUDINARY_CLOUD_NAME is missing"
   );
 }
-
 if (!process.env.CLOUDINARY_API_KEY) {
   throw new Error(
     "CLOUDINARY_API_KEY is missing"
   );
 }
-
 if (!process.env.CLOUDINARY_API_SECRET) {
   throw new Error(
     "CLOUDINARY_API_SECRET is missing"
