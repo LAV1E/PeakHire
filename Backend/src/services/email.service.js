@@ -71,15 +71,13 @@ import config from "../config/config.js";
 //   },
 // });
 export const transporter = nodemailer.createTransport({
-  host: "74.125.24.109", // smtp.gmail.com IPv4
-  port: 587,
-  secure: false,
-  requireTLS: true,
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
   auth: {
     user: config.GOOGLE_USER,
     pass: config.GOOGLE_APP_PASSWORD,
   },
-  family: 4, // Force IPv4
 });
 console.log("consoleee fro testing....")
 // Verify SMTP Connection
