@@ -26,7 +26,7 @@ export async function registerUser(req, res) {
     }
 
     // Allowed Roles
-    const allowedRoles = ["candidate","recruiter","admin"];
+    const allowedRoles = ["candidate","recruiter",];
 
     if (!allowedRoles.includes(role)) {
       return res.status(400).json({
