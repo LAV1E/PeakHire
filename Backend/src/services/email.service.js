@@ -70,7 +70,7 @@ export const transporter = nodemailer.createTransport({
     pass: config.GOOGLE_APP_PASSWORD,
   },
 });
-
+console.log("consoleee fro testing....")
 // Verify SMTP Connection
 transporter.verify((error) => {
   if (error) {
