@@ -83,7 +83,7 @@
 
 ///vercel update 
 import axios from "axios";
-import pdf from "pdf-parse";
+import PDFParser from "pdf2json";
 
 // ======================================================
 // Extract Resume Text
@@ -91,17 +91,42 @@ import pdf from "pdf-parse";
 
 export async function extractResumeText(resumeUrl) {
   try {
+    // Download PDF
     const response = await axios.get(resumeUrl, {
       responseType: "arraybuffer",
     });
 
-    const buffer = Buffer.from(response.data);
+    const pdfBuffer = Buffer.from(response.data);
 
-    const data = await pdf(buffer);
+    const parser = new PDFParser();
 
-    return data.text
-      .replace(/\s+/g, " ")
-      .trim();
+    return await new Promise((resolve, reject) => {
+      parser.on("pdfParser_dataError", (err) => {
+        reject(err.parserError);
+      });
+
+      parser.on("pdfParser_dataReady", (pdfData) => {
+        let text = "";
+
+        pdfData.Pages.forEach((page) => {
+          page.Texts.forEach((textItem) => {
+            textItem.R.forEach((run) => {
+              text += decodeURIComponent(run.T) + " ";
+            });
+
+            text += "\n";
+          });
+
+          text += "\n";
+        });
+
+        resolve(
+          text.replace(/\s+/g, " ").trim()
+        );
+      });
+
+      parser.parseBuffer(pdfBuffer);
+    });
 
   } catch (error) {
     console.error("Resume Parser Error:", error);
